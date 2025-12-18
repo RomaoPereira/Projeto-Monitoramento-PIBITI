@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>Relatórios Gerados</h2>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr style="background: #007bff; color: white;">
+                <th>Tipo</th>
+                <th>Data</th>
+                <th>Sala</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for relatorio in Relatorios %}
+            <tr>
+                <td>{{ relatorio.get_tipo_display }}</td>
+                <td>{{ relatorio.data|date:"d/m/Y" }}</td>
+                <td>{{ relatorio.sala.nome }}</td>
+                <td>
+                    <a href="{% url 'editar_relatorio' relatorio.id %}" style="font-weight: bold; color: #007bff; text-decoration: none;">Editar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">Nenhum relatório encontrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'cadastro_relatorio' %}" class="nav-card">Gerar Novo Relatório</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>{{ titulo }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background: #28a745; color: white; padding: 10px;">Salvar </button>
+        <a href="{% url 'lista_leitura' %}" style="margin-left: 15px;">Voltar</a>
+    </form>
+{% endblock %}

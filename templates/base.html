@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Protótipo{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7f6; color: #333; }
+        
+        header { background: #007bff; color: #fff; padding: 20px; text-align: center; }
+        
+        nav { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+
+        .nav-card {
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-card:hover { transform: translateY(-3px); background: #e9ecef; }
+
+        main { max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        
+        h2 { margin-bottom: 20px; color: #007bff; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        /* Estilo para Formulários CRUD */
+        form p { margin-bottom: 15px; }
+        input[type="text"], input[type="number"], select {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;
+        }
+        button { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Nome Protótipo</h1>
+    <nav> 
+        <a href="{% url 'lista_leitura' %}" class="nav-card">Leitura</a>
+        <a href="{% url 'lista_relatorio'%}" class="nav-card">Relatório</a>
+        <a href="{% url 'lista_sala' %}" class="nav-card">Salas</a>
+        <a href="{% url 'lista_usuario' %}" class="nav-card">Usuários</a>
+    </nav>
+</header>
+
+<main>
+    {% block conteudo %}
+    {% endblock %}
+</main>
+
+</body>
+</html>

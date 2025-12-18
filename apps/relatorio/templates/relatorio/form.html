@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>{{ titulo }}</h2>
+    <form method="post" style="max-width: 500px; text-align: left; margin: auto;">
+        {% csrf_token %}
+        <h3>Dados de Acesso</h3>
+        {{ user_form.as_p }}
+        <hr>
+        <h3>Dados Acadêmicos</h3>
+        {{ extra_form.as_p }}
+        <br>
+        <button type="submit" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+            Salvar Usuário
+        </button>
+    </form>
+{% endblock %}

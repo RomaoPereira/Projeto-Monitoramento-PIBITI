@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block  conteudo%}
+    <br>
+    <h1> Cadastrar Nova Salas</h1>
+
+    <form method='POST'>
+        {% csrf_token %}
+
+        <p> Por favor, preencha o seguinte formulário: </p>
+        
+        {{form.as_p}}
+
+        <button type='submit'> Salvar </button>
+
+{% endblock %}

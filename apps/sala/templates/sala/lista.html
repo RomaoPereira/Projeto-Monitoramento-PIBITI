@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>Lista das Salas</h2>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr style="background: #007bff; color: white;">
+                <th>Nome da Sala</th>
+                <th>Localização</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sala in Salas %}
+            <tr>
+                <td>{{ sala.nome }}</td>
+                <td>{{ sala.localizacao }}</td>
+                <td>
+                    {% if sala.status %}
+                        <span style="color: green; font-weight: bold;">Ativo</span>
+                    {% else %}
+                        <span style="color: red; font-weight: bold">Inativo</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'editar_sala' sala.id %}" style="text-decoration: none; color: #007bff; font-weight: bold;">Editar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhuma sala cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'cadastro_sala' %}" class="nav-card">Cadastrar Nova Sala</a>
+
+{% endblock %}

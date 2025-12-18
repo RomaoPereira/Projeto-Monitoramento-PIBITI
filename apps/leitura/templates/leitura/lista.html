@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>Histórico de Leituras</h2>
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr style="background: #007bff; color: white;">
+                <th>Sala</th>
+                <th>Data/Hora</th>
+                <th>Temp.</th>
+                <th>Presença</th>
+                <th>Porta</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leitura in Leituras %}
+            <tr>
+                <td>{{ leitura.sala.nome }}</td>
+                <td>{{ leitura.data_hora|date:"d/m/Y H:i" }}</td>
+                <td>{{ leitura.temperatura }}°C</td>
+                <td>{% if leitura.presenca %}
+                        <span style="color: green; font-weight: bold;">Sim</span>
+                    {% else %}
+                        <span style="color: red;">Não</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if leitura.porta %}
+                        <span style="color: red; font-weight: bold;">Aberta</span>
+                    {% else %}
+                        <span style="color: green; font-weight: bold">Fechada</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'editar_leitura' leitura.id %}" style="text-decoration: none; color: #007bff; font-weight: bold;">Editar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6">Nenhuma leitura registrada.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'cadastro_leitura' %}" class="nav-card">Nova Leitura</a>
+{% endblock %}

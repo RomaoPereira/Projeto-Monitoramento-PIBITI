@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>Gerenciamento de Usuários</h2>
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr style="background: #007bff; color: white;">
+                <th>Nome Completo</th>
+                <th>Username</th>
+                <th>Matrícula</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in Usuarios %}
+            <tr>
+                <td>{{ u.user.get_full_name }}</td>
+                <td>{{ u.user.username }}</td>
+                <td>{{ u.matricula }}</td>
+                <td>{{ u.user.email }}</td>
+                <td>
+                    <a href="{% url 'editar_usuario' u.id %}" style="font-weight: bold; color: #007bff; text-decoration: none;">Editar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">Nenhum usuário cadastrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'cadastro_usuario' %}" class="nav-card">Novo Usuário</a>
+{% endblock %}
+
